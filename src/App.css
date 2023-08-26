@@ -1,5 +1,27 @@
-.App {
-  text-align: center;
+.app-wrapper {
+  display: grid;
+  grid-template-areas:
+    'h h'
+    'n c';
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  margin: 0 auto;
+  width: 1000px;
+}
+.header img{
+  width: 20px;
+}
+.header{
+  grid-area: h;
+  background-color: mediumseagreen;
+}
+.nav{
+  grid-area: n;
+  background-color: cadetblue;
+}
+.content{
+  grid-area: c;
+  background-color: lightblue;
 }
 
 .App-logo {
