@@ -5,7 +5,7 @@ const Profile = () => {
     return (
         <div className={s.content}>
             Main content
-            <img src={'https://it-incubator.io/_next/static/media/logo.8a063c2a.svg'}/>
+            <img className={s.imgBack} src={'https://it-incubator.io/_next/static/media/logo.8a063c2a.svg'}/>
             <div>
                 ava
             </div>
