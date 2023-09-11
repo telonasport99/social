@@ -16,7 +16,6 @@ function App() {
                 <Route component={Profile} path={'/profile'}/>
                 <Route component={Dialogs} path={'/dialogs'}/>
                 <Route component={News} path={'/news'}/>
-            <Dialogs/>
             </div>
         </div>
     );
