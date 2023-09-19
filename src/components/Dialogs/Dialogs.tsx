@@ -20,19 +20,23 @@ type MessagePropsType={
      return <div className={s.message}>{props.message}</div>
  }
 const Dialogs = (props:DialogsPropsType) => {
+     let dialogsData=[
+         {id:1,name:'Tolya'},
+         {id:2,name:'Vadim'}
+     ]
+    let messageData=[
+        {id:1,message:'321'},
+        {id:2,message:'32'},
+    ]
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItem id={1} name={'TOlya'}/>
-                <DialogItem id={2} name={'ALLO'}/>
-                <DialogItem id={3} name={'kTYA'}/>
-                <DialogItem id={5} name={'vadim'}/>
+                <DialogItem id={dialogsData[0].id} name={dialogsData[0].name}/>
+                <DialogItem id={dialogsData[1].id} name={dialogsData[1].name}/>
             </div>
             <div className={s.messages}>
-               <Message message={'321'}/>
-               <Message message={'32'}/>
-               <Message message={'1'}/>
-               <Message message={'yo'}/>
+               <Message message={messageData[0].message}/>
+               <Message message={messageData[1].message}/>
             </div>
         </div>
     );
