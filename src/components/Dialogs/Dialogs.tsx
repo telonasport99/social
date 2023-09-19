@@ -31,12 +31,10 @@ const Dialogs = (props:DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItem id={dialogsData[0].id} name={dialogsData[0].name}/>
-                <DialogItem id={dialogsData[1].id} name={dialogsData[1].name}/>
+                {dialogsData.map(el=><DialogItem name={el.name} id={el.id} key={el.id} />)}
             </div>
             <div className={s.messages}>
-               <Message message={messageData[0].message}/>
-               <Message message={messageData[1].message}/>
+                {messageData.map(el=><Message message={el.message} key={el.id}/>)}
             </div>
         </div>
     );
