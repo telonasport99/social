@@ -2,11 +2,13 @@ import React, {LegacyRef} from 'react';
 import Post from "./Post/Post";
 type MyPostPropsType={
     posts:{id:number,message:string,likesCount:number}[]
+    addPost:(message:string)=>void
 }
 const Mypost = (props:MyPostPropsType) => {
     const addPost=()=>{
-      alert(newPostElement.current?.value)
-    }
+        if(newPostElement.current){
+      props.addPost(newPostElement.current.value)
+    }}
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     return (
         <div>My posts

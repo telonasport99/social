@@ -18,3 +18,11 @@ export let state = {
         ]
     }
 }
+export let addPost=(postMessage:string)=>{
+    let newPost={
+        id:4,
+        message:postMessage,
+        likesCount:3
+    }
+    state.profilePage.posts.push(newPost)
+}

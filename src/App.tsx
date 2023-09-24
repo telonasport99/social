@@ -17,6 +17,7 @@ type AppPropsType = {
             message: { id: number, message: string }[]
         }
     }
+    addPost:(message:string)=>void
 }
 
 function App(props: AppPropsType) {
@@ -25,7 +26,7 @@ function App(props: AppPropsType) {
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route render={() => <Profile  postPage={props.state.profilePage} />} path={'/profile'}/>
+                <Route render={() => <Profile addPost={props.addPost}  postPage={props.state.profilePage} />} path={'/profile'}/>
                 <Route render={() => <Dialogs messagePage={props.state.messagePage}
                 />}
                        path={'/dialogs'}/>

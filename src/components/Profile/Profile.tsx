@@ -7,12 +7,13 @@ type ProfilePropsType = {
     postPage: {
         posts: { id: number, message: string, likesCount: number }[]
     }
+    addPost:(message:string)=>void
 }
 const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <Mypost posts={props.postPage.posts}/>
+            <Mypost posts={props.postPage.posts} addPost={props.addPost}/>
         </div>
     );
 };
