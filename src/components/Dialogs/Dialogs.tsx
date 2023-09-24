@@ -3,20 +3,22 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
- type DialogsPropsType={
-     dialogs:{id:number,name:string}[]
-     message:{id:number, message:string}[]
- }
+type DialogsPropsType = {
+    messagePage: {
+        dialogs: { id: number, name: string }[]
+        message: { id: number, message: string }[]
+    }
+}
 
-const Dialogs = (props:DialogsPropsType) => {
+const Dialogs = (props: DialogsPropsType) => {
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {props.dialogs.map(el=><DialogItem name={el.name} id={el.id} key={el.id} />)}
+                {props.messagePage.dialogs.map(el => <DialogItem name={el.name} id={el.id} key={el.id}/>)}
             </div>
             <div className={s.messages}>
-                {props.message.map(el=><Message message={el.message} key={el.id}/>)}
+                {props.messagePage.message.map(el => <Message message={el.message} key={el.id}/>)}
             </div>
         </div>
     );
