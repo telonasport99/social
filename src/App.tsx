@@ -9,7 +9,7 @@ import News from "./components/News/News";
 
 type AppPropsType = {
     state: {
-        postPage: {
+        profilePage: {
             posts: { id: number, message: string, likesCount: number }[]
         }
         messagePage: {
@@ -25,7 +25,7 @@ function App(props: AppPropsType) {
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route render={() => <Profile  postPage={props.state.postPage} />} path={'/profile'}/>
+                <Route render={() => <Profile  postPage={props.state.profilePage} />} path={'/profile'}/>
                 <Route render={() => <Dialogs messagePage={props.state.messagePage}
                 />}
                        path={'/dialogs'}/>
