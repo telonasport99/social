@@ -1,11 +1,10 @@
 import React from 'react';
 import Post from "./Post/Post";
+type MyPostPropsType={
+    posts:{id:number,message:string,likesCount:number}[]
+}
+const Mypost = (props:MyPostPropsType) => {
 
-const Mypost = () => {
-    let postData=[
-        {id:1,message:'Hi how are u',likesCount:3},
-        {id:2,message:'ImFine',likesCount:3},
-    ]
     return (
         <div>My posts
             <div>
@@ -14,7 +13,7 @@ const Mypost = () => {
             <button>remove</button>
             </div>
             <div>
-                {postData.map(el=><Post message={el.message} likesCount={el.likesCount} key={el.id}/>)}
+                {props.posts.map(el=><Post message={el.message} likesCount={el.likesCount} key={el.id}/>)}
             </div>
         </div>
     );
