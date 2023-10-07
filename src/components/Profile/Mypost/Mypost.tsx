@@ -1,25 +1,33 @@
 import React, {LegacyRef} from 'react';
 import Post from "./Post/Post";
+import {changeNewPostText} from "../../../redux/state";
 type MyPostPropsType={
-    posts:{id:number,message:string,likesCount:number}[]
-    addPost:(message:string)=>void
+    postPage: {
+        posts: { id: number, message: string, likesCount: number }[]
+        newPostText:string
+    }
+    addPost:()=>void
+    changeNewPostText:(newPostText:string)=>void
 }
 const Mypost = (props:MyPostPropsType) => {
     const addPost=()=>{
-        if(newPostElement.current){
-      props.addPost(newPostElement.current.value)
-        newPostElement.current.value=''
-        }}
+      props.addPost()
+        }
+    const onPostChange=()=>{
+        let text = newPostElement.current?.value
+        if(text){
+        changeNewPostText(text)
+    }}
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     return (
         <div>My posts
             <div>
-            <textarea ref={newPostElement}></textarea>
+            <textarea onChange={onPostChange} ref={newPostElement} value={props.postPage.newPostText}></textarea>
             <button onClick={addPost}>addPost</button>
             <button>remove</button>
             </div>
             <div>
-                {props.posts.map(el=><Post message={el.message} likesCount={el.likesCount} key={el.id}/>)}
+                {props.postPage.posts.map(el=><Post message={el.message} likesCount={el.likesCount} key={el.id}/>)}
             </div>
         </div>
     );
