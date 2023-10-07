@@ -1,6 +1,8 @@
 import React from "react";
-import {renderTree} from "../render";
-
+import {StateType} from "../index";
+let renderTree = (state1:typeof state) => {
+  console.log('321')
+}
 export let state = {
     profilePage: {
         posts: [
@@ -33,4 +35,7 @@ export let addPost=()=>{
 export const changeNewPostText=(newText:string)=>{
     state.profilePage.newPostText = newText
     renderTree(state)
+}
+export const subscriber = (observer:(state:StateType)=>void) => {
+    renderTree=observer
 }
