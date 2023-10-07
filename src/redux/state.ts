@@ -1,4 +1,5 @@
 import React from "react";
+import {renderTree} from "../render";
 
 export let state = {
     profilePage: {
@@ -25,4 +26,5 @@ export let addPost=(postMessage:string)=>{
         likesCount:3
     }
     state.profilePage.posts.push(newPost)
+    renderTree(state)
 }

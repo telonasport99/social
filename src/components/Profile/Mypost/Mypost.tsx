@@ -8,7 +8,8 @@ const Mypost = (props:MyPostPropsType) => {
     const addPost=()=>{
         if(newPostElement.current){
       props.addPost(newPostElement.current.value)
-    }}
+        newPostElement.current.value=''
+        }}
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     return (
         <div>My posts
