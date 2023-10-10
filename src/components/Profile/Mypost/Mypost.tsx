@@ -1,6 +1,5 @@
 import React, {LegacyRef} from 'react';
 import Post from "./Post/Post";
-import {changeNewPostText} from "../../../redux/state";
 type MyPostPropsType={
     postPage: {
         posts: { id: number, message: string, likesCount: number }[]
@@ -16,7 +15,7 @@ const Mypost = (props:MyPostPropsType) => {
     const onPostChange=()=>{
         let text = newPostElement.current?.value
         if(text){
-        changeNewPostText(text)
+        props.changeNewPostText(text)
     }}
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     return (

@@ -6,18 +6,10 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import News from "./components/News/News";
+import {StateType} from "./index";
 
 type AppPropsType = {
-    state: {
-        profilePage: {
-            posts: { id: number, message: string, likesCount: number }[]
-            newPostText: string
-        }
-        messagePage: {
-            dialogs: { id: number, name: string }[]
-            message: { id: number, message: string }[]
-        }
-    }
+    state:StateType
     addPost: () => void
     changeNewPostText: (newPostText: string) => void
 }
