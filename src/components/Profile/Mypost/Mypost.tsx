@@ -1,21 +1,21 @@
 import React, {LegacyRef} from 'react';
 import Post from "./Post/Post";
+import {ActionType} from "../../../redux/state";
 type MyPostPropsType={
     postPage: {
         posts: { id: number, message: string, likesCount: number }[]
         newPostText:string
     }
-    addPost:()=>void
-    changeNewPostText:(newPostText:string)=>void
+    dispatch:(action:ActionType)=>void
 }
 const Mypost = (props:MyPostPropsType) => {
     const addPost=()=>{
-      props.addPost()
+      props.dispatch({type:'ADD-POST'})
         }
     const onPostChange=()=>{
         let text = newPostElement.current?.value
         if(text){
-        props.changeNewPostText(text)
+        props.dispatch({type:'UPDATE-NEW-POST-TEXT',newText:text})
     }}
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     return (
