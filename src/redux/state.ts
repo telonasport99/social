@@ -1,5 +1,8 @@
 import React from "react";
 import {StateType} from "../index";
+import profile from "../components/Profile/Profile";
+import {profileReducer} from "./profileReducer";
+import {dialogsReducer} from "./dialogsReducer";
 
 type StoreType = {
     _state: StateType
@@ -25,10 +28,7 @@ export type UpdateNewMessageBody = {
     type: 'UPDATE-NEW-MESSAGE-BODY'
     message: string
 }
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
-const SEND_MESSAGE = 'SEND-MESSAGE'
+
 
 export let store: StoreType = {
     _state: {
@@ -57,54 +57,16 @@ export let store: StoreType = {
     callSubscriber(state1: StateType) {
         console.log('321')
     },
-    addPost() {
-
-    },
-    changeNewPostText(newText: string) {
-
-    },
+    addPost() {},
+    changeNewPostText(newText: string) {},
     subscriber(observer: (state: StateType) => void) {
         this.callSubscriber = observer
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: 4,
-                message: this._state.profilePage.newPostText,
-                likesCount: 3
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this.callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText
-            this.callSubscriber(this._state)
-        }else if (action.type === UPDATE_NEW_MESSAGE_BODY){
-             this._state.messagePage.newMessageBody = action.message
-            this.callSubscriber(this._state)
-        }else if(action.type === SEND_MESSAGE){
-            let body = this._state.messagePage.newMessageBody
-            this._state.messagePage.newMessageBody=''
-            this._state.messagePage.message.push({id:6,message:body})
-            this.callSubscriber(this._state)
-        }
-    }
-}
-export const addPostAC = (): AddPostActionType => {
-    return {
-        type: ADD_POST
-    }
-}
-export const sendMessageAC=():SendMessage=>{
-    return {
-        type:SEND_MESSAGE
+       this._state.profilePage= profileReducer(this._state.profilePage,action)
+      this._state.messagePage =  dialogsReducer(this._state.messagePage,action)
+        this.callSubscriber(this._state)
     }
 }
 
-export const updateNewPostTextAC = (newText: string): UpdateNewPostText => {
-    return {type: UPDATE_NEW_POST_TEXT, newText}
-}
-export const updateNewMessageBodyAC=(message:string):UpdateNewMessageBody=>{
-    return {type:UPDATE_NEW_MESSAGE_BODY,message}
-}
 

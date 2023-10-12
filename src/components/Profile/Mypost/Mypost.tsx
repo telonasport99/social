@@ -1,6 +1,7 @@
 import React, {LegacyRef} from 'react';
 import Post from "./Post/Post";
-import {ActionType, addPostAC, updateNewPostTextAC} from "../../../redux/state";
+import {ActionType} from "../../../redux/state";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 type MyPostPropsType={
     postPage: {
         posts: { id: number, message: string, likesCount: number }[]
