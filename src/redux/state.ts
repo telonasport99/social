@@ -10,16 +10,26 @@ type StoreType = {
     getState: () => StateType
     dispatch: (action: ActionType) => void
 }
-export type ActionType = AddPostActionType | UpdateNewPostText
+export type ActionType = AddPostActionType | UpdateNewPostText|UpdateNewMessageBody|SendMessage
 export type AddPostActionType = {
     type: 'ADD-POST'
+}
+export type SendMessage = {
+    type: 'SEND-MESSAGE'
 }
 export type UpdateNewPostText = {
     type: "UPDATE-NEW-POST-TEXT"
     newText: string
 }
+export type UpdateNewMessageBody = {
+    type: 'UPDATE-NEW-MESSAGE-BODY'
+    message: string
+}
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+const SEND_MESSAGE = 'SEND-MESSAGE'
+
 export let store: StoreType = {
     _state: {
         profilePage: {
@@ -37,7 +47,8 @@ export let store: StoreType = {
             message: [
                 {id: 1, message: '321'},
                 {id: 2, message: '32'},
-            ]
+            ],
+            newMessageBody:''
         }
     },
     getState() {
@@ -68,6 +79,14 @@ export let store: StoreType = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText
             this.callSubscriber(this._state)
+        }else if (action.type === UPDATE_NEW_MESSAGE_BODY){
+             this._state.messagePage.newMessageBody = action.message
+            this.callSubscriber(this._state)
+        }else if(action.type === SEND_MESSAGE){
+            let body = this._state.messagePage.newMessageBody
+            this._state.messagePage.newMessageBody=''
+            this._state.messagePage.message.push({id:6,message:body})
+            this.callSubscriber(this._state)
         }
     }
 }
@@ -76,9 +95,16 @@ export const addPostAC = (): AddPostActionType => {
         type: ADD_POST
     }
 }
-
+export const sendMessageAC=():SendMessage=>{
+    return {
+        type:SEND_MESSAGE
+    }
+}
 
 export const updateNewPostTextAC = (newText: string): UpdateNewPostText => {
     return {type: UPDATE_NEW_POST_TEXT, newText}
+}
+export const updateNewMessageBodyAC=(message:string):UpdateNewMessageBody=>{
+    return {type:UPDATE_NEW_MESSAGE_BODY,message}
 }
 

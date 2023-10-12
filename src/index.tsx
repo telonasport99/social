@@ -29,6 +29,7 @@ type ProfilePageType = {
 type MessagePageType = {
     dialogs: DialogType[]
     message: MessageType[]
+    newMessageBody:string
 }
 
 export type StateType = {
