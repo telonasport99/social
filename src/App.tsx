@@ -7,7 +7,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import {StateType} from "./index";
-import {ActionType} from "./redux/state";
+import {ActionType} from "./redux/store";
 
 type AppPropsType = {
     state:StateType

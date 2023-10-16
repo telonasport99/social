@@ -1,6 +1,6 @@
 import React from 'react';
 import {StateType} from "../index";
-import {ActionType, AddPostActionType, UpdateNewPostText} from "./state";
+import {ActionType, AddPostActionType, UpdateNewPostText} from "./store";
 
 type postPage= {
     posts: { id: number, message: string, likesCount: number }[]
@@ -17,7 +17,14 @@ export const updateNewPostTextAC = (newText: string): UpdateNewPostText => {
     return {type: UPDATE_NEW_POST_TEXT, newText}
 }
 
-export const profileReducer = (state:postPage,action:ActionType) => {
+let initialState:postPage= {
+    posts: [
+        {id: 1, message: 'Hi how are u', likesCount: 3},
+        {id: 2, message: 'ImFine', likesCount: 3},
+    ],
+        newPostText: 'it-kamasutra'
+}
+export const profileReducer = (state=initialState,action:ActionType) => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {
