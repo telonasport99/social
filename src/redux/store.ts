@@ -4,7 +4,7 @@ import profile from "../components/Profile/Profile";
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 
-type StoreType = {
+export type StoreType = {
     _state: StateType
     changeNewPostText: (newText: string) => void
     callSubscriber: (state: StateType) => void

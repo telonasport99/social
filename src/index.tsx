@@ -39,7 +39,7 @@ export type StateType = {
 const renderTree=(state:StateType)=>{
     ReactDOM.render(
         <BrowserRouter>
-            <App state={store.getState()}  dispatch={store.dispatch.bind(store)} /></BrowserRouter>,
+            <App store={store} /></BrowserRouter>,
         document.getElementById('root')
     )
 }

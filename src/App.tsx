@@ -7,11 +7,11 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import {StateType} from "./index";
-import {ActionType} from "./redux/store";
+import {ActionType, StoreType} from "./redux/store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
-    state:StateType
-    dispatch:(action:ActionType)=>void
+   store:StoreType
 }
 
 function App(props: AppPropsType) {
@@ -20,9 +20,8 @@ function App(props: AppPropsType) {
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route render={() => <Profile dispatch={props.dispatch}
-                                              postPage={props.state.profilePage}/>} path={'/profile'}/>
-                <Route render={() => <Dialogs messagePage={props.state.messagePage} dispatch={props.dispatch}
+                <Route render={() => <Profile store={props.store}/>} path={'/profile'}/>
+                <Route render={() => <DialogsContainer store={props.store}
                 />}
                        path={'/dialogs'}/>
                 <Route component={News} path={'/news'}/>
