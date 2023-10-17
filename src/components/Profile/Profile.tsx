@@ -6,13 +6,12 @@ import {ActionType, StoreType} from "../../redux/store";
 import MypostContainer from "./Mypost/MypostContainer";
 
 type ProfilePropsType = {
-   store:StoreType
 }
 const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MypostContainer store={props.store}/>
+            <MypostContainer />
         </div>
     );
 };

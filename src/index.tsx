@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/store";
+import {Provider} from "./StoreContext";
 type PostType = {
     id: number
     message: string
@@ -39,7 +40,10 @@ export type StateType = {
 const renderTree=(state:StateType)=>{
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store} /></BrowserRouter>,
+            <Provider store={store}>
+            <App  />
+            </Provider>
+        </BrowserRouter>,
         document.getElementById('root')
     )
 }
