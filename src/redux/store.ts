@@ -4,7 +4,7 @@ import profile from "../components/Profile/Profile";
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 
-export type StoreType = {
+ type StoreType = {
     _state: StateType
     changeNewPostText: (newText: string) => void
     callSubscriber: (state: StateType) => void
@@ -30,7 +30,7 @@ export type UpdateNewMessageBody = {
 }
 
 
-export let store: StoreType = {
+ let store = {
     _state: {
         profilePage: {
             posts: [
@@ -62,11 +62,11 @@ export let store: StoreType = {
     subscriber(observer: (state: StateType) => void) {
         this.callSubscriber = observer
     },
-    dispatch(action) {
+    /*dispatch(action) {
        this._state.profilePage= profileReducer(this._state.profilePage,action)
       this._state.messagePage =  dialogsReducer(this._state.messagePage,action)
         this.callSubscriber(this._state)
-    }
+    }*/
 }
 
 

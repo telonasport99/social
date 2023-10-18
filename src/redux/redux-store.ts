@@ -6,4 +6,5 @@ let reducers = combineReducers({
  dialogs: dialogsReducer,
  profile:profileReducer
 })
-let store = createStore(reducers)
+ export type StoreType=ReturnType<typeof reducers>
+export let store = createStore(reducers)

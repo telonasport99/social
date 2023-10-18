@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import {store} from "./redux/store";
-import {Provider} from "./StoreContext";
+import {store} from "./redux/redux-store";
+import {Provider} from "react-redux";
 type PostType = {
     id: number
     message: string
@@ -26,17 +26,9 @@ type ProfilePageType = {
     posts: PostType[]
     newPostText: string
 }
+export type StateType = ReturnType<typeof store.getState>
 
-type MessagePageType = {
-    dialogs: DialogType[]
-    message: MessageType[]
-    newMessageBody:string
-}
 
-export type StateType = {
-    profilePage: ProfilePageType
-    messagePage: MessagePageType
-}
 const renderTree=(state:StateType)=>{
     ReactDOM.render(
         <BrowserRouter>
@@ -48,4 +40,3 @@ const renderTree=(state:StateType)=>{
     )
 }
 renderTree(store.getState())
-store.subscriber(renderTree)

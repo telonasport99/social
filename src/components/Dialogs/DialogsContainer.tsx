@@ -1,13 +1,12 @@
 import React, {ChangeEvent} from 'react';
-import s from './Dialogs.module.css'
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import {ActionType, StoreType} from "../../redux/store";
+
 import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
 import Dialogs from "./Dialogs";
-import { StoreContext } from '../../StoreContext';
+import {connect} from "react-redux";
+import {StoreType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
 
-type DialogsPropsType = {
+/*type DialogsPropsType = {
 }
 
 const DialogsContainer = (props: DialogsPropsType) => {
@@ -28,6 +27,31 @@ const DialogsContainer = (props: DialogsPropsType) => {
             }}
         </StoreContext.Consumer>
     );
-};
+};*/
+type mapDispatchToPropsType = {
+    onSendMessageClick:()=>void
+    onNewMessageChange:(e:ChangeEvent<HTMLTextAreaElement>)=>void
+
+}
+type mapStateToPropsType={
+    dialogs: { id: number, name: string }[]
+    message: { id: number, message: string }[]
+    newMessageBody:string
+}
+
+let mapStateToProps=(state:StoreType):mapStateToPropsType=>{
+    return{
+        dialogs:state.dialogs.dialogs,
+        message:state.dialogs.message,
+        newMessageBody:state.dialogs.newMessageBody
+    }
+}
+let mapDispatchToProps=(dispatch:Dispatch):mapDispatchToPropsType=>{
+    return{
+        onSendMessageClick:()=>dispatch(sendMessageAC()),
+        onNewMessageChange:(e:ChangeEvent<HTMLTextAreaElement>)=>dispatch(updateNewMessageBodyAC(e.currentTarget.value))
+    }
+}
+const DialogsContainer=connect(mapStateToProps,mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer;
