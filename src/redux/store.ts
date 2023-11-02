@@ -1,8 +1,5 @@
-import React from "react";
 import {StateType} from "../index";
-import profile from "../components/Profile/Profile";
-import {profileReducer} from "./profileReducer";
-import {dialogsReducer} from "./dialogsReducer";
+
 
  type StoreType = {
     _state: StateType
@@ -59,14 +56,10 @@ export type UpdateNewMessageBody = {
     },
     addPost() {},
     changeNewPostText(newText: string) {},
-    subscriber(observer: (state: StateType) => void) {
-        this.callSubscriber = observer
-    },
-    /*dispatch(action) {
-       this._state.profilePage= profileReducer(this._state.profilePage,action)
-      this._state.messagePage =  dialogsReducer(this._state.messagePage,action)
-        this.callSubscriber(this._state)
-    }*/
+        subscriber(observer: (state: StateType) => void) {
+            this.callSubscriber = observer
+        },
+
 }
 
 
