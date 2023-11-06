@@ -3,15 +3,12 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import News from "./components/News/News";
-import {StateType} from "./index";
-import {ActionType} from "./redux/store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {UserContainer} from "./components/Users/UserContainer";
 
-type AppPropsType = {
-}
+type AppPropsType = {}
 
 function App(props: AppPropsType) {
     return (
@@ -19,11 +16,10 @@ function App(props: AppPropsType) {
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route render={() => <Profile />} path={'/profile'}/>
-                <Route render={() => <DialogsContainer
-                />}
-                       path={'/dialogs'}/>
+                <Route render={() => <Profile/>} path={'/profile'}/>
+                <Route render={() => <DialogsContainer/>} path={'/dialogs'}/>
                 <Route component={News} path={'/news'}/>
+                <Route render={() => <UserContainer/>} path={'/users'}/>
             </div>
         </div>
     );

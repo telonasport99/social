@@ -6,28 +6,7 @@ import {connect} from "react-redux";
 import {StoreType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 
-/*type DialogsPropsType = {
-}
 
-const DialogsContainer = (props: DialogsPropsType) => {
-    return (
-        <StoreContext.Consumer>
-            {store =>{
-                let state=store.getState()
-                let onSendMessageClick=()=>{
-                    debugger
-                    store.dispatch(sendMessageAC())
-                }
-                let onNewMessageChange=(e:ChangeEvent<HTMLTextAreaElement>)=> {
-                    store.dispatch(updateNewMessageBodyAC(e.currentTarget.value))
-                }
-                return <Dialogs onSendMessageClick={onSendMessageClick} onNewMessageChange={onNewMessageChange}
-                               dialogs={state.messagePage.dialogs} message={state.messagePage.message}
-                               newMessageBody={state.messagePage.newMessageBody}/>
-            }}
-        </StoreContext.Consumer>
-    );
-};*/
 type mapDispatchToPropsType = {
     onSendMessageClick:()=>void
     onNewMessageChange:(e:ChangeEvent<HTMLTextAreaElement>)=>void
