@@ -1,9 +1,9 @@
 import React, {ChangeEvent} from 'react'
 import {connect} from "react-redux";
-import Users from "./Users";
 import {StoreType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 import {followAC, initialStateType, setUsersAC, unfollowAC, UserType} from "../../redux/userReducer";
+import {UsersC} from "./UsersC";
 type mapStateToPropsType={
     usersPage:initialStateType
 }
@@ -33,4 +33,4 @@ let mapDispatchToProps=(dispatch:Dispatch):mapDispatchToPropsType=>{
         }
     }
 }
-export  const UserContainer=connect(mapStateToProps,mapDispatchToProps)(Users)
+export  const UserContainer=connect(mapStateToProps,mapDispatchToProps)(UsersC)

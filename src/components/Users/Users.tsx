@@ -9,10 +9,7 @@ const Users = (props:UserPropsType) => {
      if(props.usersPage.users.length===0){
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(res=>props.setUsers(res.data.items))
-        /* props.setUsers(  [
-         {id: 1,img:'https://www.shareicon.net/data/512x512/2015/10/17/657343_cat_512x512.png',followed:true, fullName: 'Vadim', status:'Work',location:{city:'Volovysk',country:'Belarus'}},
-         {id: 2,img:'https://www.shareicon.net/data/512x512/2015/10/17/657343_cat_512x512.png',followed:false, fullName: 'Sasha', status:'Dont work',location:{city:'Hrodno',country:'Belarus'}},
-     ])*/}}
+        }}
     return (
         <div>
             <button onClick={getUser}>getUser</button>
