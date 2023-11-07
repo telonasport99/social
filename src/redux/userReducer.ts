@@ -5,10 +5,7 @@ import {ActionType, AddPostActionType, UpdateNewPostText} from "./store";
 export type initialStateType= {
     users:Array<UserType>
 }
-export type UserType={ id: number,img:string,followed:boolean, fullName: string, status:string,location:{
-        city:string,
-        country:string
-    }}
+export type UserType={ id: number,img:string,followed:boolean, name: string, status:string,photos:{small:string,large:string}}
 type FollowActionType=ReturnType<typeof followAC>
 type UnFollowActionType=ReturnType<typeof unfollowAC>
 type SetUserActionType=ReturnType<typeof setUsersAC>
