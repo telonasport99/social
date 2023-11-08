@@ -4,12 +4,17 @@ import {ActionType, AddPostActionType, UpdateNewPostText} from "./store";
 
 export type initialStateType= {
     users:Array<UserType>
+    pageSize:number
+    totalUserCount:number
+    currentPage:number
 }
 export type UserType={ id: number,img:string,followed:boolean, name: string, status:string,photos:{small:string,large:string}}
 type FollowActionType=ReturnType<typeof followAC>
 type UnFollowActionType=ReturnType<typeof unfollowAC>
 type SetUserActionType=ReturnType<typeof setUsersAC>
-type UsersActionType=FollowActionType|UnFollowActionType|SetUserActionType
+type SetCurrentPageActionType=ReturnType<typeof setCurrentPageAC>
+type SetTotalCountActionType=ReturnType<typeof setTotalCountAC>
+type UsersActionType=FollowActionType|UnFollowActionType|SetUserActionType|SetCurrentPageActionType|SetTotalCountActionType
 export const followAC=(userId:number)=>{
     debugger
     return{type:'FOLLOW',userId}as const
@@ -17,8 +22,17 @@ export const followAC=(userId:number)=>{
 export const unfollowAC=(userId:number)=>{
     return{type:'UNFOLLOW',userId}as const
 }
+export const setCurrentPageAC=(page:number)=>{
+    return{type:'SET-CURRENT-PAGE',page}as const
+}
+export const setTotalCountAC=(count:number)=>{
+    return{type:'SET-TOTAL-COUNT',count}as const
+}
 let initialState:initialStateType= {
-  users:[]
+  users:[],
+    pageSize:40,
+    totalUserCount:0,
+    currentPage:1
 }
 export const setUsersAC=(users:Array<UserType>)=>{
    return {type:'SET-USER',users}as const
@@ -34,6 +48,12 @@ export const userReducer = (state=initialState,action:UsersActionType):initialSt
         }
         case 'SET-USER':{
             return {...state, users:action.users}
+        }
+        case "SET-CURRENT-PAGE":{
+            return {...state, currentPage:action.page }
+        }
+        case 'SET-TOTAL-COUNT':{
+            return {...state, totalUserCount:action.count}
         }
         default:return state
 }

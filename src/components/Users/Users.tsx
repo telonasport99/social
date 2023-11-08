@@ -8,7 +8,9 @@ const Users = (props:UserPropsType) => {
  let getUser=()=>{
      if(props.usersPage.users.length===0){
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(res=>props.setUsers(res.data.items))
+            .then(res=>{
+                props.setUsers(res.data.items)
+            })
         }}
     return (
         <div>
