@@ -7,6 +7,7 @@ export type initialStateType= {
     pageSize:number
     totalUserCount:number
     currentPage:number
+    isFetching:boolean
 }
 export type UserType={ id: number,img:string,followed:boolean, name: string, status:string,photos:{small:string,large:string}}
 type FollowActionType=ReturnType<typeof followAC>
@@ -14,7 +15,8 @@ type UnFollowActionType=ReturnType<typeof unfollowAC>
 type SetUserActionType=ReturnType<typeof setUsersAC>
 type SetCurrentPageActionType=ReturnType<typeof setCurrentPageAC>
 type SetTotalCountActionType=ReturnType<typeof setTotalCountAC>
-type UsersActionType=FollowActionType|UnFollowActionType|SetUserActionType|SetCurrentPageActionType|SetTotalCountActionType
+type setIsFetchingActionType=ReturnType<typeof setIsFetchingAC>
+type UsersActionType=setIsFetchingActionType|FollowActionType|UnFollowActionType|SetUserActionType|SetCurrentPageActionType|SetTotalCountActionType
 export const followAC=(userId:number)=>{
     debugger
     return{type:'FOLLOW',userId}as const
@@ -28,11 +30,15 @@ export const setCurrentPageAC=(page:number)=>{
 export const setTotalCountAC=(count:number)=>{
     return{type:'SET-TOTAL-COUNT',count}as const
 }
+export const setIsFetchingAC=(fetching:boolean)=>{
+    return{type:'SET-IS-FETCHING',fetching}as const
+}
 let initialState:initialStateType= {
   users:[],
     pageSize:40,
     totalUserCount:0,
-    currentPage:1
+    currentPage:1,
+    isFetching:false
 }
 export const setUsersAC=(users:Array<UserType>)=>{
    return {type:'SET-USER',users}as const
@@ -55,6 +61,10 @@ export const userReducer = (state=initialState,action:UsersActionType):initialSt
         case 'SET-TOTAL-COUNT':{
             return {...state, totalUserCount:action.count}
         }
+        case 'SET-IS-FETCHING':{
+            return {...state, isFetching:action.fetching}
+        }
+
         default:return state
 }
 }
