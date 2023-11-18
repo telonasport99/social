@@ -5,7 +5,7 @@
  import {userReducer} from "./userReducer";
 let reducers = combineReducers({
  dialogs: dialogsReducer,
- profile:profileReducer,
+ profilePage:profileReducer,
  usersPage:userReducer
 })
  export type StoreType=ReturnType<typeof reducers>

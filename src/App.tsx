@@ -7,6 +7,7 @@ import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {UserContainer} from "./components/Users/UserContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 type AppPropsType = {}
 
@@ -16,7 +17,7 @@ function App(props: AppPropsType) {
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route render={() => <Profile/>} path={'/profile'}/>
+                <Route render={() => <ProfileContainer/>} path={'/profile'}/>
                 <Route render={() => <DialogsContainer/>} path={'/dialogs'}/>
                 <Route component={News} path={'/news'}/>
                 <Route render={() => <UserContainer/>} path={'/users'}/>

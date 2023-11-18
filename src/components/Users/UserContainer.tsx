@@ -2,8 +2,7 @@ import React, {ChangeEvent} from 'react'
 import {connect} from "react-redux";
 import {StoreType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import img from '../../assets/walk.gif'
-import {
+    import {
     followAC,
     initialStateType,
     setCurrentPageAC, setIsFetchingAC,

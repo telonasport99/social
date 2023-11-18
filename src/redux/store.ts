@@ -1,16 +1,8 @@
 import {StateType} from "../index";
+import {setUsersAC} from "./userReducer";
+import {setUserProfileAC} from "./profileReducer";
 
-
- type StoreType = {
-    _state: StateType
-    changeNewPostText: (newText: string) => void
-    callSubscriber: (state: StateType) => void
-    addPost: () => void
-    subscriber: (observer: (state: StateType) => void) => void
-    getState: () => StateType
-    dispatch: (action: ActionType) => void
-}
-export type ActionType = AddPostActionType | UpdateNewPostText|UpdateNewMessageBody|SendMessage
+export type ActionType = AddPostActionType | UpdateNewPostText|UpdateNewMessageBody|SendMessage|SetUserActionType
 export type AddPostActionType = {
     type: 'ADD-POST'
 }
@@ -25,41 +17,7 @@ export type UpdateNewMessageBody = {
     type: 'UPDATE-NEW-MESSAGE-BODY'
     message: string
 }
+export type SetUserActionType = ReturnType<typeof setUserProfileAC>
 
-
- let store = {
-    _state: {
-        profilePage: {
-            posts: [
-                {id: 1, message: 'Hi how are u', likesCount: 3},
-                {id: 2, message: 'ImFine', likesCount: 3},
-            ],
-            newPostText: 'it-kamasutra'
-        },
-        messagePage: {
-            dialogs: [
-                {id: 1, name: 'Tolya'},
-                {id: 2, name: 'Vadim'}
-            ],
-            message: [
-                {id: 1, message: '321'},
-                {id: 2, message: '32'},
-            ],
-            newMessageBody:''
-        }
-    },
-    getState() {
-        return this._state
-    },
-    callSubscriber(state1: StateType) {
-        console.log('321')
-    },
-    addPost() {},
-    changeNewPostText(newText: string) {},
-        subscriber(observer: (state: StateType) => void) {
-            this.callSubscriber = observer
-        },
-
-}
 
 
