@@ -1,3 +1,7 @@
 .selectedPage{
     font-weight: bold;
 }
+.userImg{
+    width: 20px;
+    border-radius: 50%;
+}

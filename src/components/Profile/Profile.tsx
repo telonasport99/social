@@ -4,13 +4,15 @@ import Mypost from "./Mypost/Mypost";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ActionType} from "../../redux/store";
 import MypostContainer from "./Mypost/MypostContainer";
-import {ProfilePropsType} from "./ProfileContainer";
+import {ProfileType} from "../../redux/profileReducer";
 
-
+export type ProfilePropsType = {
+    profile:ProfileType | null
+}
 const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.content}>
-            <ProfileInfo profile={props.profile} setUserProfile={props.setUserProfile}/>
+            <ProfileInfo profile={props.profile} />
             <MypostContainer />
         </div>
     );

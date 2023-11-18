@@ -26,7 +26,7 @@ export const Users = (props:UsersPropsTypeWithOnChange) => {
                 <div key={el.id}>
                     <NavLink to={'/profile'+el.id}>
                     <img
-                        src={el.photos.small ? el.photos.small : 'https://www.shareicon.net/data/512x512/2015/10/17/657343_cat_512x512.png'}/>
+                        className={style.userImg} src={el.photos.small ? el.photos.small : 'https://www.shareicon.net/data/512x512/2015/10/17/657343_cat_512x512.png'}/>
                     </NavLink>
                     {el.followed ?
                         <button onClick={() => props.unfollow(el.id)}>unfollow</button> :
