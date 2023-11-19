@@ -3,10 +3,12 @@
  import {dialogsReducer} from "./dialogsReducer";
  import {profileReducer} from "./profileReducer";
  import {userReducer} from "./userReducer";
+ import {authReducer} from "./authReducer";
 let reducers = combineReducers({
  dialogs: dialogsReducer,
  profilePage:profileReducer,
- usersPage:userReducer
+ usersPage:userReducer,
+ authPage:authReducer
 })
  export type StoreType=ReturnType<typeof reducers>
-export let store = createStore(reducers)
+export const store = createStore(reducers)
