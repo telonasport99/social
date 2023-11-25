@@ -8,6 +8,7 @@ export type initialStateType= {
     totalUserCount:number
     currentPage:number
     isFetching:boolean
+    stopFollow:Array<number>
 }
 export type UserType={ id: number,img:string,followed:boolean, name: string, status:string,photos:{small:string,large:string}}
 type FollowActionType=ReturnType<typeof followAC>
@@ -16,9 +17,9 @@ type SetUserActionType=ReturnType<typeof setUsersAC>
 type SetCurrentPageActionType=ReturnType<typeof setCurrentPageAC>
 type SetTotalCountActionType=ReturnType<typeof setTotalCountAC>
 type setIsFetchingActionType=ReturnType<typeof setIsFetchingAC>
-type UsersActionType=setIsFetchingActionType|FollowActionType|UnFollowActionType|SetUserActionType|SetCurrentPageActionType|SetTotalCountActionType
+type StopFollowActionType=ReturnType<typeof stopFollowAC>
+type UsersActionType=setIsFetchingActionType|FollowActionType|UnFollowActionType|SetUserActionType|SetCurrentPageActionType|SetTotalCountActionType|StopFollowActionType
 export const followAC=(userId:number)=>{
-    debugger
     return{type:'FOLLOW',userId}as const
 }
 export const unfollowAC=(userId:number)=>{
@@ -33,12 +34,16 @@ export const setTotalCountAC=(count:number)=>{
 export const setIsFetchingAC=(fetching:boolean)=>{
     return{type:'SET-IS-FETCHING',fetching}as const
 }
+export const stopFollowAC=(isFetching:boolean,id:number)=>{
+    return{type:'STOP-FOLLOW',isFetching,id}as const
+}
 let initialState:initialStateType= {
-  users:[],
-    pageSize:40,
+    users:[],
+    pageSize:10,
     totalUserCount:0,
     currentPage:1,
-    isFetching:false
+    isFetching:false,
+    stopFollow:[] as number[]
 }
 export const setUsersAC=(users:Array<UserType>)=>{
    return {type:'SET-USER',users}as const
@@ -63,6 +68,13 @@ export const userReducer = (state=initialState,action:UsersActionType):initialSt
         }
         case 'SET-IS-FETCHING':{
             return {...state, isFetching:action.fetching}
+        }
+        case "STOP-FOLLOW":{
+            return {...state,
+            stopFollow:action.isFetching
+            ? [...state.stopFollow,action.id]
+                : state.stopFollow.filter(id=>id!==action.id)
+            }
         }
 
         default:return state

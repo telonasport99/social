@@ -6,7 +6,6 @@ type HeaderPropsType = {
     isAuth:boolean
 }
 const Header = (props:HeaderPropsType) => {
-    debugger
     return (
         <div className={s.header}>
             <header ><img src={'https://yt3.googleuserco' +

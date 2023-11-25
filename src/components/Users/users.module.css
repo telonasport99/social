@@ -5,3 +5,9 @@
     width: 20px;
     border-radius: 50%;
 }
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: red; /* Установка красного цвета фона */
+    /* Дополнительные стили по вашему выбору */
+}
