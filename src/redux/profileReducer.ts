@@ -1,6 +1,6 @@
 import React from 'react';
 import {StateType} from "../index";
-import {ActionType, AddPostActionType, UpdateNewPostText} from "./store";
+import {ActionTypeDialogs, AddPostActionType, UpdateNewPostText} from "./store";
 
 export type postPageType= {
     posts: { id: number, message: string, likesCount: number }[]
@@ -51,7 +51,7 @@ let initialState:postPageType= {
     newPostText: 'it-kamasutra',
     profile:null
 }
-export const profileReducer = (state=initialState,action:ActionType) => {
+export const profileReducer = (state=initialState,action:ActionTypeDialogs) => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {

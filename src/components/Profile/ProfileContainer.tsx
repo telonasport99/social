@@ -1,24 +1,13 @@
 import React from 'react';
 import s from './Profile.module.css'
-import Mypost from "./Mypost/Mypost";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ActionType} from "../../redux/store";
-import MypostContainer from "./Mypost/MypostContainer";
+
 import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {StoreType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {
-    followAC, initialStateType,
-    setCurrentPageAC,
-    setIsFetchingAC,
-    setTotalCountAC,
-    setUsersAC,
-    unfollowAC,
-    UserType
-} from "../../redux/userReducer";
-import {postPageType, ProfileType, setUserProfileAC} from "../../redux/profileReducer";
+
+import { ProfileType, setUserProfileAC} from "../../redux/profileReducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 type PathParamsType={
     userId:string

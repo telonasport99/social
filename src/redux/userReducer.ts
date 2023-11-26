@@ -1,6 +1,5 @@
-import React from 'react';
-import {StateType} from "../index";
-import {ActionType, AddPostActionType, UpdateNewPostText} from "./store";
+import {userApi} from "../api/api";
+import {AppThunkType} from "./redux-store";
 
 export type initialStateType= {
     users:Array<UserType>
@@ -18,7 +17,7 @@ type SetCurrentPageActionType=ReturnType<typeof setCurrentPageAC>
 type SetTotalCountActionType=ReturnType<typeof setTotalCountAC>
 type setIsFetchingActionType=ReturnType<typeof setIsFetchingAC>
 type StopFollowActionType=ReturnType<typeof stopFollowAC>
-type UsersActionType=setIsFetchingActionType|FollowActionType|UnFollowActionType|SetUserActionType|SetCurrentPageActionType|SetTotalCountActionType|StopFollowActionType
+export type UsersActionType=setIsFetchingActionType|FollowActionType|UnFollowActionType|SetUserActionType|SetCurrentPageActionType|SetTotalCountActionType|StopFollowActionType
 export const followAC=(userId:number)=>{
     return{type:'FOLLOW',userId}as const
 }
@@ -49,6 +48,41 @@ export const setUsersAC=(users:Array<UserType>)=>{
    return {type:'SET-USER',users}as const
 }
 
+export const getUsersTC = (currentPage:number, pageSize:number):AppThunkType => {
+    return (dispatch) => {
+        dispatch(setIsFetchingAC(true))
+        userApi.getUsers(currentPage,pageSize)
+            .then(res => {
+                dispatch(setIsFetchingAC(false))
+                dispatch(setUsersAC(res.items))
+                dispatch(setTotalCountAC(res.totalCount))
+                dispatch(setIsFetchingAC(false))
+            })
+    }
+}
+export const followTC = (id:number):AppThunkType=>{
+    return (dispatch)=>{
+        dispatch(stopFollowAC(true,id))
+        userApi.follow(id)
+            .then(res => {
+                if(res.data.resultCode==0){
+                    dispatch(followAC(id))
+                }
+                dispatch(stopFollowAC(false,id))
+            })}
+}
+export const unfollowTC = (id:number):AppThunkType=>{
+    debugger
+    return (dispatch)=>{
+        dispatch(stopFollowAC(true,id))
+        userApi.unfollow(id)
+            .then(res => {
+                if(res.data.resultCode==0){
+                    dispatch(unfollowAC(id))
+                }
+                dispatch( stopFollowAC(false,id))
+            })}
+}
 export const userReducer = (state=initialState,action:UsersActionType):initialStateType => {
     switch (action.type) {
         case 'FOLLOW':{

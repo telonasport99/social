@@ -1,6 +1,6 @@
 import React from 'react';
 import {StateType} from "../index";
-import {ActionType, SendMessage, UpdateNewMessageBody} from "./store";
+import { ActionTypeDialogs, SendMessage, UpdateNewMessageBody} from "./store";
 
 type  messagePage = {
     dialogs: { id: number, name: string }[]
@@ -28,7 +28,7 @@ export const sendMessageAC = (): SendMessage => {
 export const updateNewMessageBodyAC = (message: string): UpdateNewMessageBody => {
     return {type: UPDATE_NEW_MESSAGE_BODY, message}
 }
-export const dialogsReducer = (state = initialState, action: ActionType) => {
+export const dialogsReducer = (state = initialState, action: ActionTypeDialogs) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             let stateCopy = {...state, newMessageBody: action.message}

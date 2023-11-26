@@ -1,8 +1,6 @@
 import React from 'react';
 import s from './Profile.module.css'
-import Mypost from "./Mypost/Mypost";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ActionType} from "../../redux/store";
 import MypostContainer from "./Mypost/MypostContainer";
 import {ProfileType} from "../../redux/profileReducer";
 

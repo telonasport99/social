@@ -2,7 +2,7 @@ import {StateType} from "../index";
 import {setUsersAC} from "./userReducer";
 import {setUserProfileAC} from "./profileReducer";
 
-export type ActionType = AddPostActionType | UpdateNewPostText|UpdateNewMessageBody|SendMessage|SetUserActionType
+export type ActionTypeDialogs = AddPostActionType | UpdateNewPostText|UpdateNewMessageBody|SendMessage|SetUserActionType
 export type AddPostActionType = {
     type: 'ADD-POST'
 }
