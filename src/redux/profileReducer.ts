@@ -1,6 +1,8 @@
 import React from 'react';
 import {StateType} from "../index";
 import {ActionTypeDialogs, AddPostActionType, UpdateNewPostText} from "./store";
+import {AppThunkType} from "./redux-store";
+import {userApi} from "../api/api";
 
 export type postPageType= {
     posts: { id: number, message: string, likesCount: number }[]
@@ -50,6 +52,14 @@ let initialState:postPageType= {
     ],
     newPostText: 'it-kamasutra',
     profile:null
+}
+export const setUserProfileTC=(userId:string):AppThunkType=>{
+    return (dispatch)=>{
+        userApi.getProfile(userId)
+            .then(res => {
+              dispatch(setUserProfileAC(res.data))
+            })
+    }
 }
 export const profileReducer = (state=initialState,action:ActionTypeDialogs) => {
     switch (action.type) {

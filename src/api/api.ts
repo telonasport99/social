@@ -14,5 +14,13 @@ export const userApi={
     },
     unfollow(id:number){
        return  instance.delete(`follow/${id}`)
+    },
+    getProfile(userId:string){
+        return    instance.get(`profile/${userId}`)
+
     }
+}
+export const authApi={
+    me(){
+       return  instance.get(`auth/me`)}
 }

@@ -1,4 +1,6 @@
 import React from 'react';
+import {AppThunkType} from "./redux-store";
+import {authApi} from "../api/api";
 
 type InitialStateType={
     id:number|null
@@ -28,4 +30,12 @@ export const authReducer=(state=initialState,action:ActionTypeUser)=>{
 type SetUserDataACType=ReturnType<typeof setUserDataAC>
 export const setUserDataAC=(data:InitialStateType)=>{
     return{type:'SET-USER-DATA',data}as const
+}
+export const authMeTC=():AppThunkType=>{
+    return (dispatch)=>{
+        authApi.me()
+            .then(res => {
+                setUserDataAC(res.data.data)
+            })
+    }
 }
