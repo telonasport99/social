@@ -7,6 +7,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UserContainer from "./components/Users/UserContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 type AppPropsType = {}
 
@@ -20,6 +21,7 @@ function App(props: AppPropsType) {
                 <Route render={() => <DialogsContainer/>} path={'/dialogs'}/>
                 <Route component={News} path={'/news'}/>
                 <Route render={() => <UserContainer/>} path={'/users'}/>
+                <Route render={()=><Login/>} path={'/login'}/>
             </div>
         </div>
     );

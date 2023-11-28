@@ -16,13 +16,15 @@ type mapStateToPropsType={
     dialogs: { id: number, name: string }[]
     message: { id: number, message: string }[]
     newMessageBody:string
+    isAuth:boolean
 }
 
 let mapStateToProps=(state:StoreType):mapStateToPropsType=>{
     return{
         dialogs:state.dialogs.dialogs,
         message:state.dialogs.message,
-        newMessageBody:state.dialogs.newMessageBody
+        newMessageBody:state.dialogs.newMessageBody,
+        isAuth:state.authPage.isAuth
     }
 }
 let mapDispatchToProps=(dispatch:Dispatch):mapDispatchToPropsType=>{
